@@ -86,11 +86,6 @@ const data = {
           icon: EmailIcon,
         },
         {
-          title: "Debug History",
-          url: "/debug-history",
-          icon: BoomIcon,
-        },
-        {
           title: "Sandbox",
           url: "/sandbox",
           icon: EmailIcon,
