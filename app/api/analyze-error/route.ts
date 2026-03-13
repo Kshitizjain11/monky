@@ -1,6 +1,6 @@
 import type { CodeAnalysisRequest, ErrorAnalysis } from "@/lib/types/error-analysis"
 
-const GEMINI_API_KEY = "AIzaSyDFlKPBXDUbo-unO6yy6m5vPB4Qc683iCk"
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ""
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
 export async function POST(request: Request) {
@@ -102,7 +102,7 @@ Important:
     const sanitizedJson = jsonString
       .replace(/[\n\r\t]/g, " ") // Replace newlines/tabs with space
       .replace(/\\(?!["\\/bfnrtu])/g, "\\\\") // Escape unescaped backslashes
-      .replace(/"([^"\\]|\\.)*"/g, (match) => {
+      .replace(/"([^"\\]|\\.)*"/g, (match: string) => {
         // Fix unescaped quotes inside string values
         return match.replace(/(?<!\\)"/g, '\\"').replace(/\\\\"/g, '\\"')
       })
