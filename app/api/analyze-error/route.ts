@@ -1,9 +1,12 @@
+import { type NextRequest, NextResponse } from "next/server"
 import type { CodeAnalysisRequest, ErrorAnalysis } from "@/lib/types/error-analysis"
+
+declare const process: any
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ""
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body: CodeAnalysisRequest = await request.json()
     const { code, language, errorMessage } = body
